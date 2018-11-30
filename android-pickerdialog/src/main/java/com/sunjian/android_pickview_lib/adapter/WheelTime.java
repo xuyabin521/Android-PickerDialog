@@ -23,13 +23,14 @@ import java.util.Locale;
 
 public class WheelTime {
 
-    public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+    public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
     private View view;
     private WheelView wv_year;
     private WheelView wv_month;
     private WheelView wv_day;
     private WheelView wv_hours;
     private WheelView wv_mins;
+    private WheelView wv_sec;
 
     //    private Type type;
     private static final int DEFULT_START_YEAR = 1990;
@@ -38,7 +39,6 @@ public class WheelTime {
     private static final int DEFAULT_END_MONTH = 12;
     private static final int DEFAULT_START_DAY = 1;
     private static final int DEFAULT_END_DAY = 31;
-    private static final int DEFAULT_END_SEC = 59;
 
 
     private int startYear = DEFULT_START_YEAR;
@@ -47,7 +47,6 @@ public class WheelTime {
     private int endMonth = DEFAULT_END_MONTH;
     private int startDay = DEFAULT_START_DAY;
     private int endDay = DEFAULT_END_DAY; //表示31天的
-    private int endSec = DEFAULT_END_SEC;   //秒
     private int currentYear;
 
     // 五种选择模式，年月日时分，年月日，时分，月日时分，年月
@@ -83,10 +82,10 @@ public class WheelTime {
     }
 
     public void setPicker(int year, int month, int day) {
-        this.setPicker(year, month, day, 0, 0);
+        this.setPicker(year, month, day, 0, 0, 0);
     }
 
-    public void setPicker(int year, int month, int day, int h, int m) {
+    public void setPicker(int year, int month, int day, int h, int m, int s) {
         // 添加大小月月份并将其转换为list,方便之后的判断
         String[] months_big = {"1", "3", "5", "7", "8", "10", "12"};
         String[] months_little = {"4", "6", "9", "11"};
@@ -228,6 +227,11 @@ public class WheelTime {
         wv_mins.setAdapter(new NumericWheelAdapter(0, 59));
         wv_mins.setCurrentItem(m);
 
+        int secId = resources.getIdentifier("sec", "id", packageName);
+        wv_sec = (WheelView) view.findViewById(secId);
+        wv_sec.setAdapter(new NumericWheelAdapter(0, 59));
+        wv_sec.setCurrentItem(s);
+
         // 添加"年"监听
         OnItemSelectedListener wheelListener_year = new OnItemSelectedListener() {
             @Override
@@ -363,6 +367,7 @@ public class WheelTime {
                 textSize = textSize * 4;
                 wv_hours.setVisibility(View.GONE);
                 wv_mins.setVisibility(View.GONE);
+                wv_sec.setVisibility(View.GONE);
                 break;
             case HOURS_MINS:
                 textSize = textSize * 4;
@@ -379,12 +384,14 @@ public class WheelTime {
                 wv_day.setVisibility(View.GONE);
                 wv_hours.setVisibility(View.GONE);
                 wv_mins.setVisibility(View.GONE);
+                wv_sec.setVisibility(View.GONE);
         }
         wv_day.setTextSize(textSize);
         wv_month.setTextSize(textSize);
         wv_year.setTextSize(textSize);
         wv_hours.setTextSize(textSize);
         wv_mins.setTextSize(textSize);
+        wv_sec.setTextSize(textSize);
 
     }
 
@@ -445,6 +452,7 @@ public class WheelTime {
         wv_day.setCyclic(cyclic);
         wv_hours.setCyclic(cyclic);
         wv_mins.setCyclic(cyclic);
+        wv_sec.setCyclic(cyclic);
     }
 
     public String getTime() {
@@ -455,20 +463,23 @@ public class WheelTime {
                         .append((wv_month.getCurrentItem() + startMonth)).append("-")
                         .append((wv_day.getCurrentItem() + startDay)).append(" ")
                         .append(wv_hours.getCurrentItem()).append(":")
-                        .append(wv_mins.getCurrentItem());
+                        .append(wv_mins.getCurrentItem()).append(":")
+                        .append(wv_sec.getCurrentItem());
             } else {
                 sb.append((wv_year.getCurrentItem() + startYear)).append("-")
                         .append((wv_month.getCurrentItem() + startMonth)).append("-")
                         .append((wv_day.getCurrentItem() + 1)).append(" ")
                         .append(wv_hours.getCurrentItem()).append(":")
-                        .append(wv_mins.getCurrentItem());
+                        .append(wv_mins.getCurrentItem()).append(":")
+                        .append(wv_sec.getCurrentItem());
             }
         } else {
             sb.append((wv_year.getCurrentItem() + startYear)).append("-")
                     .append((wv_month.getCurrentItem() + 1)).append("-")
                     .append((wv_day.getCurrentItem() + 1)).append(" ")
                     .append(wv_hours.getCurrentItem()).append(":")
-                    .append(wv_mins.getCurrentItem());
+                    .append(wv_mins.getCurrentItem()).append(":")
+                    .append(wv_sec.getCurrentItem());
         }
 
         return sb.toString();

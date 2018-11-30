@@ -135,7 +135,8 @@ public abstract class BaseDatePickerDialog extends DialogFragment {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
-        mWheelTime.setPicker(year, month, day, hours, minute);
+        int second = calendar.get(Calendar.SECOND);
+        mWheelTime.setPicker(year, month, day, hours, minute,second);
 
         //获取焦点
         requestFocus();
@@ -181,7 +182,8 @@ public abstract class BaseDatePickerDialog extends DialogFragment {
     public void clickSubmit(View v) {
         if (mTimeSelectListener != null) {
             try {
-                Date date = WheelTime.dateFormat.parse(mWheelTime.getTime());
+                String string = mWheelTime.getTime();
+                Date date = WheelTime.dateFormat.parse(string);
                 mTimeSelectListener.onTimeSelect(date);
             } catch (ParseException e) {
                 e.printStackTrace();
