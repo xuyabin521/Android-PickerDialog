@@ -1,5 +1,6 @@
 package com.sunjian.android_pickerview;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -124,10 +125,6 @@ public class MainActivity extends AppCompatActivity {
         Calendar startCal = Calendar.getInstance();
         Calendar endCal = Calendar.getInstance();
         endCal.set(2030, 1, 13);
-//        dBundle.putLong(PhoneDatePickerDialog.START_TIME_MILLIS, startCal.getTimeInMillis());
-//        dBundle.putLong(PhoneDatePickerDialog.END_TIME_MILLIS, endCal.getTimeInMillis());
-//        dBundle.putSerializable(PhoneDatePickerDialog.START_TIME_DATE, startCal.getTime());
-//        dBundle.putSerializable(PhoneDatePickerDialog.END_TIME_DATE, endCal.getTime());
         dBundle.putSerializable(PhoneDatePickerDialog.START_TIME_CALENDAR, startCal);
         dBundle.putSerializable(PhoneDatePickerDialog.END_TIME_CALENDAR, endCal);
         phoneDatePickerDialog = PhoneDatePickerDialog.newInstance(dBundle);
@@ -205,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static String getTime(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return format.format(date);
     }
 }

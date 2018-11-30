@@ -28,7 +28,7 @@
     <Button
         android:id="@+id/tvOptions"
         android:layout_marginTop="10dp"
-        android:text="改版条件"
+        android:text="电视地址"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
