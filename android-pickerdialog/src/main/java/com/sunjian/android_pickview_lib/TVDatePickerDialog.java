@@ -43,7 +43,7 @@ public class TVDatePickerDialog extends BaseDatePickerDialog {
 
     @Override
     protected void initView(final View v) {
-        mBtnOK = (TextView) v.findViewById(R.id.btnOK);
+        mBtnOK = v.findViewById(R.id.btnOK);
 
         mBtnOK.setOnClickListener(new View.OnClickListener() {
             @Override

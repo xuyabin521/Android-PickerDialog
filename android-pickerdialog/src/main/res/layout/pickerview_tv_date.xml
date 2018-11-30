@@ -51,6 +51,14 @@
         app:pickerdialog_isRequestFocus="true"
         app:pickerdialog_lable="@string/pickerview_minutes" />
 
+    <com.sunjian.android_pickview_lib.view.WheelView
+        android:id="@+id/sec"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:pickerdialog_isRequestFocus="true"
+        app:pickerdialog_lable="@string/pickerview_seconds" />
+
     <TextView
         android:id="@+id/btnOK"
         android:layout_width="60dp"

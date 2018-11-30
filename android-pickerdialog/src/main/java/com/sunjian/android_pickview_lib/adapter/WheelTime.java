@@ -38,6 +38,7 @@ public class WheelTime {
     private static final int DEFAULT_END_MONTH = 12;
     private static final int DEFAULT_START_DAY = 1;
     private static final int DEFAULT_END_DAY = 31;
+    private static final int DEFAULT_END_SEC = 59;
 
 
     private int startYear = DEFULT_START_YEAR;
@@ -46,6 +47,7 @@ public class WheelTime {
     private int endMonth = DEFAULT_END_MONTH;
     private int startDay = DEFAULT_START_DAY;
     private int endDay = DEFAULT_END_DAY; //表示31天的
+    private int endSec = DEFAULT_END_SEC;   //秒
     private int currentYear;
 
     // 五种选择模式，年月日时分，年月日，时分，月日时分，年月
