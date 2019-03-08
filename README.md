@@ -2,13 +2,6 @@
 
 ## 这是一个兼容手机和电视(焦点选择)的高仿IOS风格的选择器。
 
-
-#### Gradle依赖
-
-```
-compile 'com.crazysunj:android-pickerdialog:1.1.1'
-```
-
 #### 效果图
 
 * 手机日期
